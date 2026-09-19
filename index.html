@@ -385,17 +385,25 @@
   .yt-link:hover { border-color: #ff0000; color: #fff; background: rgba(255,0,0,0.08); }
 
   /* ── EARNED BANNER ── */
-  #earned { position: relative; z-index: 2; background: linear-gradient(135deg, var(--green) 0%, #196b3f 100%); padding: 5.5rem 2.5rem; overflow: hidden; }
-  #earned::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(-45deg, transparent, transparent 30px, rgba(0,0,0,0.06) 30px, rgba(0,0,0,0.06) 31px); }
-  #earned::after { content: ''; position: absolute; width: 40vw; height: 40vw; border-radius: 50%; background: rgba(255,184,22,0.14); filter: blur(80px); top: -20%; right: -10%; }
-  .earned-inner { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; position: relative; z-index: 1; }
-  .earned-quote { font-family: var(--font-impact); font-size: clamp(2.8rem, 6vw, 5.2rem); line-height: 0.92; letter-spacing: 0.01em; color: #fff; text-transform: uppercase; }
-  .earned-quote .comma { color: rgba(255,255,255,0.4); }
-  .earned-context { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-top: 1.5rem; }
-  .earned-body { font-size: 0.92rem; line-height: 1.8; color: rgba(255,255,255,0.9); }
-  .earned-stat { display: flex; gap: 3rem; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.25); }
-  .e-stat-num { font-family: var(--font-impact); font-size: 2.6rem; color: var(--gold); display: block; line-height: 1; }
-  .e-stat-label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+  #earned {
+    position: relative; z-index: 2; min-height: 92vh; display: flex; align-items: flex-end;
+    padding: 6rem 2.5rem 4.5rem; overflow: hidden;
+    background: url('profile/earned-bg.jpg') center/cover no-repeat; background-attachment: fixed;
+  }
+  #earned::before { content: ''; position: absolute; inset: 0; background:
+      linear-gradient(180deg, rgba(9,9,10,0.5) 0%, rgba(9,9,10,0.1) 28%, rgba(9,9,10,0.72) 74%, rgba(11,11,12,0.97) 100%),
+      linear-gradient(90deg, rgba(9,9,10,0.82) 0%, rgba(9,9,10,0.2) 52%, transparent 100%),
+      radial-gradient(ellipse 55% 60% at 82% 28%, rgba(32,129,76,0.28), transparent 60%); }
+  .earned-inner { position: relative; z-index: 1; max-width: 1300px; margin: 0 auto; width: 100%; }
+  .earned-eyebrow { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.1rem; display: flex; align-items: center; gap: 0.7rem; }
+  .earned-eyebrow::before { content: ''; width: 2rem; height: 1px; background: var(--gold); }
+  .earned-quote { font-family: var(--font-impact); font-size: clamp(3rem, 9vw, 7rem); line-height: 0.9; letter-spacing: 0.01em; color: #fff; text-transform: uppercase; text-shadow: 0 6px 44px rgba(0,0,0,0.65); }
+  .earned-quote .comma { color: var(--gold); }
+  .earned-body { font-size: 0.95rem; line-height: 1.8; color: rgba(245,240,232,0.92); max-width: 620px; margin-top: 1.6rem; text-shadow: 0 2px 14px rgba(0,0,0,0.7); }
+  .earned-stat { display: flex; gap: 3rem; margin-top: 2rem; padding-top: 1.6rem; border-top: 1px solid rgba(255,255,255,0.28); flex-wrap: wrap; }
+  .e-stat-num { font-family: var(--font-impact); font-size: 2.8rem; color: var(--gold); display: block; line-height: 1; }
+  .e-stat-label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,240,232,0.78); }
+  .earned-credit { position: absolute; bottom: 0.7rem; right: 1.1rem; z-index: 1; font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
 
   /* ── AWARD FEATURE ── */
   #award { position: relative; z-index: 2; background: var(--dark2); overflow: hidden; }
@@ -486,7 +494,7 @@
     .about-stat-grid { grid-template-columns: repeat(2, 1fr); }
     .award-inner { text-align: center; justify-items: center; }
     .award-seal { margin: 0 auto; }
-    #earned { padding: 4rem 1.5rem; }
+    #earned { padding: 4.5rem 1.5rem 3.5rem; min-height: auto; background-attachment: scroll; }
     .earned-stat { gap: 1.8rem; }
   }
 </style>
@@ -751,20 +759,16 @@
 <!-- EARNED BANNER -->
 <section id="earned">
   <div class="earned-inner">
-    <div class="reveal">
-      <div class="earned-quote">EARNED<span class="comma">,</span><br>NOT<br>GIVEN<span class="comma">.</span></div>
-      <p class="earned-context">Flagship Keynote · Built on a real program</p>
-    </div>
-    <div class="reveal reveal-1">
-      <p class="earned-body">In February 2026, 38 apprentices from IBEW Local 120 spent a day mentoring 105 Grade 8 students across eight hands-on stations: scissor lifts, boom lifts, telehandlers, circuit wiring, conduit bending, VR simulation, forklift operation. No scripts. No lectures. Just tradespeople doing what they do, alongside the next generation deciding what they want to be.</p>
-      <p class="earned-body" style="margin-top:1rem;">That event is the heart of the signature keynote. It isn't a story about one good day. It's an argument about what it takes to build a workforce pipeline that actually works, and why the trades have to earn the attention of young people rather than assume it.</p>
-      <div class="earned-stat">
-        <div><span class="e-stat-num" data-target="38">0</span><span class="e-stat-label">Apprentices<br>who led</span></div>
-        <div><span class="e-stat-num" data-target="105">0</span><span class="e-stat-label">Grade 8s<br>who showed up</span></div>
-        <div><span class="e-stat-num" data-target="8">0</span><span class="e-stat-label">Hands-on<br>stations</span></div>
-      </div>
+    <p class="earned-eyebrow reveal">Flagship Keynote</p>
+    <div class="earned-quote reveal">EARNED<span class="comma">,</span> NOT GIVEN<span class="comma">.</span></div>
+    <p class="earned-body reveal reveal-1">In February 2026, 38 apprentices from IBEW Local 120 spent a day mentoring 105 Grade 8 students across eight hands-on stations — scissor lifts, boom lifts, telehandlers, circuit wiring, conduit bending, VR simulation, forklift operation. No scripts. No lectures. Just tradespeople doing what they do, alongside the next generation deciding what they want to be. That day is the heart of the signature keynote.</p>
+    <div class="earned-stat reveal reveal-2">
+      <div><span class="e-stat-num" data-target="38">0</span><span class="e-stat-label">Apprentices<br>who led</span></div>
+      <div><span class="e-stat-num" data-target="105">0</span><span class="e-stat-label">Grade 8s<br>who showed up</span></div>
+      <div><span class="e-stat-num" data-target="8">0</span><span class="e-stat-label">Hands-on<br>stations</span></div>
     </div>
   </div>
+  <span class="earned-credit">IBEW Local 120 Training Centre · Feb 2026</span>
 </section>
 
 <!-- AWARD FEATURE -->
