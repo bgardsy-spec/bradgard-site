@@ -239,8 +239,13 @@
   @keyframes cueMove { 0%,100%{transform:scaleY(0.4);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} }
 
   /* ── MARQUEE ── */
+  .marquee-cap {
+    text-align: center; font-family: var(--font-mono); font-size: 0.63rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--muted); background: var(--dark2);
+    border-top: 1px solid var(--border); padding: 1rem 1.5rem 0.2rem; position: relative; z-index: 2;
+  }
   .marquee {
-    position: relative; z-index: 2; overflow: hidden; border-top: 1px solid var(--border);
+    position: relative; z-index: 2; overflow: hidden;
     border-bottom: 1px solid var(--border); background: var(--dark2); padding: 1.1rem 0;
     display: flex; white-space: nowrap;
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
@@ -538,10 +543,11 @@
 </section>
 
 <!-- MARQUEE -->
+<p class="marquee-cap">Four decades in the field &mdash; projects, plants &amp; sites including</p>
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
-    <span>General Dynamics</span><span>Toyota</span><span>Ford</span><span>Magna</span><span>Suncor</span><span>Imperial Oil</span><span>Fluor</span><span>Maple Leaf Foods</span><span>IBEW</span>
-    <span>General Dynamics</span><span>Toyota</span><span>Ford</span><span>Magna</span><span>Suncor</span><span>Imperial Oil</span><span>Fluor</span><span>Maple Leaf Foods</span><span>IBEW</span>
+    <span>General Dynamics</span><span>Toyota</span><span>Ford</span><span>Magna</span><span>Suncor</span><span>Imperial Oil</span><span>Aggreko</span><span>Fluor</span><span>Maple Leaf Foods</span><span>IBEW</span>
+    <span>General Dynamics</span><span>Toyota</span><span>Ford</span><span>Magna</span><span>Suncor</span><span>Imperial Oil</span><span>Aggreko</span><span>Fluor</span><span>Maple Leaf Foods</span><span>IBEW</span>
   </div>
 </div>
 
