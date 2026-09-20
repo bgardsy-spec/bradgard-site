@@ -268,15 +268,17 @@
   .section-intro { font-size: 0.92rem; line-height: 1.75; color: var(--muted); font-style: italic; }
 
   /* ── ABOUT ── */
-  #about { display: grid; grid-template-columns: 1fr 1.35fr; gap: 5rem; align-items: start; }
-  .about-headline { font-family: var(--font-display); font-size: clamp(2.4rem, 4vw, 3.4rem); line-height: 0.98; letter-spacing: 0.03em; color: var(--warm); margin-bottom: 1.5rem; }
+  .about-header { margin-bottom: 3.25rem; }
+  .about-body { display: grid; grid-template-columns: 340px 1fr; gap: 4.5rem; align-items: start; }
+  .about-headline { font-family: var(--font-display); font-size: clamp(2.4rem, 4vw, 3.4rem); line-height: 0.98; letter-spacing: 0.03em; color: var(--warm); margin-bottom: 0; }
 
-  .about-photo {
-    position: relative; border-radius: 6px; overflow: hidden; box-shadow: var(--shadow-lg);
-    border: 1px solid var(--border); max-width: 340px;
+  .about-media { position: sticky; top: 6rem; }
+  .about-photo { position: relative; width: 100%; }
+  .about-photo img {
+    display: block; width: 100%; height: auto; filter: grayscale(0.1) contrast(1.02);
+    -webkit-mask-image: linear-gradient(180deg, #000 88%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 88%, transparent 100%);
   }
-  .about-photo img { display: block; width: 100%; height: auto; filter: grayscale(0.15) contrast(1.03); }
-  .about-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 60%, rgba(11,11,12,0.5)); }
   .about-photo .tab {
     position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem 1.2rem; z-index: 2;
     font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm);
@@ -388,7 +390,7 @@
   #earned {
     position: relative; z-index: 2; min-height: 92vh; display: flex; align-items: flex-end;
     padding: 6rem 2.5rem 4.5rem; overflow: hidden;
-    background: url('profile/earned-bg.jpg') center/cover no-repeat; background-attachment: fixed;
+    background: url('profile/earned-mentorship-ppe.jpg') center/cover no-repeat; background-attachment: fixed;
   }
   #earned::before { content: ''; position: absolute; inset: 0; background:
       linear-gradient(180deg, rgba(9,9,10,0.5) 0%, rgba(9,9,10,0.1) 28%, rgba(9,9,10,0.72) 74%, rgba(11,11,12,0.97) 100%),
@@ -425,10 +427,12 @@
 
   /* ── CREDENTIALS ── */
   .creds-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); margin-top: 3rem; border-radius: 8px; overflow: hidden; }
-  .cred-card { background: var(--dark2); padding: 1.7rem 1.5rem; transition: background 0.2s, transform 0.2s; position: relative; }
+  .cred-card { background: var(--dark2); padding: 1.7rem 1.5rem; transition: background 0.2s, transform 0.2s; position: relative; display: flex; flex-direction: column; }
   .cred-card:hover { background: var(--dark3); }
   .cred-code { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.1em; color: var(--gold); display: block; margin-bottom: 0.5rem; }
   .cred-name { font-size: 0.84rem; color: var(--warm2); line-height: 1.4; }
+  .cred-dual { align-self: flex-start; margin-top: auto; padding-top: 0; font-family: var(--font-mono); font-size: 0.53rem; letter-spacing: 0.11em; text-transform: uppercase; color: var(--green-gl); border: 1px solid var(--green); background: rgba(32,129,76,0.12); padding: 0.22rem 0.5rem; border-radius: 999px; line-height: 1; }
+  .cred-name { margin-bottom: 0.7rem; }
 
   /* ── CONTACT ── */
   #contact-wrap { position: relative; z-index: 2; background: var(--dark2); border-top: 1px solid var(--border); }
@@ -485,7 +489,8 @@
     .hero-award { position: static; margin-bottom: 1.5rem; opacity: 1; animation: none; }
     #hero { padding: 6rem 1.5rem 4rem; }
     .section { padding: 4.5rem 1.5rem; }
-    #about, .keynotes-header, .contact-inner, .earned-inner, .award-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .about-body, .keynotes-header, .contact-inner, .earned-inner, .award-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .about-media { position: static; top: auto; max-width: 340px; }
     .contact-inner { padding: 4.5rem 1.5rem; }
     .keynote-grid, .video-grid { grid-template-columns: 1fr; }
     .creds-grid { grid-template-columns: repeat(2, 1fr); }
@@ -558,7 +563,7 @@
 </section>
 
 <!-- MARQUEE -->
-<p class="marquee-cap">Career built on sites for</p>
+<p class="marquee-cap">Career built on job sites for</p>
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
     <span>General Dynamics</span><span>Toyota</span><span>Ford</span><span>Magna</span><span>Suncor</span><span>Imperial Oil</span><span>Aggreko</span><span>Fluor</span><span>Maple Leaf Foods</span><span>IBEW</span>
@@ -568,25 +573,28 @@
 
 <!-- ABOUT -->
 <section id="about" class="section">
-  <div class="reveal">
+  <div class="about-header reveal">
     <span class="section-label">About</span>
     <span class="gold-rule"></span>
     <h2 class="about-headline">FOUR DECADES.<br>ONE TRADE.</h2>
-
-    <div class="about-photo">
-      <img src="profile/brad_about_dressshirt.png" alt="Brad Gard" loading="lazy">
-      <div class="tab"><span>Brad Gard</span><b>IBEW Local 120</b></div>
-    </div>
-
-    <div class="about-stat-grid">
-      <div class="stat-cell"><span class="stat-num" data-target="40" data-suffix="+">0</span><span class="stat-label">Years in the trade</span></div>
-      <div class="stat-cell"><span class="stat-num" data-target="105">0</span><span class="stat-label">Grade 8s mentored, Feb 2026</span></div>
-      <div class="stat-cell"><span class="stat-num" data-target="38">0</span><span class="stat-label">Apprentices who led the day</span></div>
-      <div class="stat-cell"><span class="stat-num" data-target="1" data-suffix=" national">0</span><span class="stat-label">NETCO award, 2026</span></div>
-    </div>
   </div>
 
-  <div class="reveal reveal-1">
+  <div class="about-body">
+    <div class="about-media reveal">
+      <div class="about-photo">
+        <img src="profile/brad_about_cutout.png" alt="Brad Gard" loading="lazy">
+        <div class="tab"><span>Brad Gard</span><b>IBEW Local 120</b></div>
+      </div>
+
+      <div class="about-stat-grid">
+        <div class="stat-cell"><span class="stat-num" data-target="40" data-suffix="+">0</span><span class="stat-label">Years in the trade</span></div>
+        <div class="stat-cell"><span class="stat-num" data-target="105">0</span><span class="stat-label">Grade 8s mentored, Feb 2026</span></div>
+        <div class="stat-cell"><span class="stat-num" data-target="38">0</span><span class="stat-label">Apprentices who led the day</span></div>
+        <div class="stat-cell"><span class="stat-num" data-target="1">0</span><span class="stat-label">National NETCO award, 2026</span></div>
+      </div>
+    </div>
+
+    <div class="reveal reveal-1 about-copy">
     <p class="about-text lead-drop">
       Brad Gard has spent over four decades in the electrical trade, on the tools since he was fourteen. Apprentice, journeyman, foreman, business owner, project manager, safety leader, and now Training Director at IBEW Local 120. Every stage taught him the same thing: skill is earned, not given.
     </p>
@@ -599,6 +607,7 @@
     <p class="about-text">
       In 2026 he received NETCO's national Leadership Excellence Award for contributions to apprenticeship and electrical training across Canada, recognition he credits to the apprentices and instructors he works alongside.
     </p>
+    </div>
   </div>
 </section>
 
@@ -624,7 +633,7 @@
         <span class="k-num">Keynote 01</span>
         <h3 class="k-title">From Tools to Teaching</h3>
         <p class="k-hook">What happens when your best electricians become your worst teachers, and how to fix it before twenty years of knowledge walks out the door.</p>
-        <div class="k-meta"><span class="tag green">45–60 min</span><span class="tag">Workforce Dev</span><span class="k-open" style="margin-left:auto">Details +</span></div>
+        <div class="k-meta"><span class="tag green">30–60 min</span><span class="tag">Workforce Dev</span><span class="k-open" style="margin-left:auto">Details +</span></div>
       </div>
     </div>
     <div class="keynote-card k2" onclick="toggleDrawer('d2')">
@@ -633,7 +642,7 @@
         <span class="k-num">Keynote 02</span>
         <h3 class="k-title">Zero Incidents Is a Culture</h3>
         <p class="k-hook">Safety paperwork saves no one. Real prevention happens in a conversation you weren't in the room for. You either build a culture that has it or wait for the incident that proves you didn't.</p>
-        <div class="k-meta"><span class="tag gold">45–60 min</span><span class="tag">H&S Leaders</span><span class="k-open" style="margin-left:auto">Details +</span></div>
+        <div class="k-meta"><span class="tag gold">30–60 min</span><span class="tag">H&S Leaders</span><span class="k-open" style="margin-left:auto">Details +</span></div>
       </div>
     </div>
     <div class="keynote-card k3" onclick="toggleDrawer('d3')">
@@ -642,7 +651,7 @@
         <span class="k-num">Keynote 03</span>
         <h3 class="k-title">The Trades in Crisis</h3>
         <p class="k-hook">The skilled trades shortage isn't a pipeline problem. It's a perception problem, and the sector has been solving the wrong one for twenty years.</p>
-        <div class="k-meta"><span class="tag rust">45–60 min</span><span class="tag">Policy / Gov't</span><span class="k-open" style="margin-left:auto">Details +</span></div>
+        <div class="k-meta"><span class="tag rust">30–60 min</span><span class="tag">Policy / Gov't</span><span class="k-open" style="margin-left:auto">Details +</span></div>
       </div>
     </div>
     <div class="keynote-card k4" onclick="toggleDrawer('d4')">
@@ -783,7 +792,13 @@
     <div class="award-body reveal reveal-1">
       <p class="kicker">National Recognition</p>
       <h3>NETCO Leadership Excellence Award</h3>
-      <p>A national award, established in 2016, recognizing outstanding contributions to apprenticeship and continuing electrical training across Canada, presented annually at the NETCO National Training Conference. <span class="quiet">It points at training, but training only matters because of the people who show up for it: the apprentices who chose this trade and the instructors who keep raising the bar.</span></p>
+      <p>Established in 2016 and presented annually at the NETCO National Training Conference, the Leadership Excellence Award recognizes <strong>outstanding contributions to apprenticeship training and continuing electrical training across Canada</strong> — the industry training professionals who, through their organizations, help promote and strengthen education and training within the electrical sector.</p>
+      <ul style="list-style:none;padding:0;margin:1.1rem 0;display:grid;gap:0.55rem;">
+        <li style="padding-left:1.4rem;position:relative;color:var(--warm2);font-size:0.94rem;line-height:1.5;"><span style="position:absolute;left:0;color:var(--gold);">▹</span>Demonstrates inspirational leadership</li>
+        <li style="padding-left:1.4rem;position:relative;color:var(--warm2);font-size:0.94rem;line-height:1.5;"><span style="position:absolute;left:0;color:var(--gold);">▹</span>Supports and advances apprenticeship and industry training</li>
+        <li style="padding-left:1.4rem;position:relative;color:var(--warm2);font-size:0.94rem;line-height:1.5;"><span style="position:absolute;left:0;color:var(--gold);">▹</span>Contributes meaningfully to the success and development of electrical training programs</li>
+      </ul>
+      <p class="quiet">A NETCO honour rooted in exactly what Brad builds: it names training, but training only matters because of the people who show up for it — the apprentices who chose this trade and the instructors who keep raising the bar.</p>
     </div>
   </div>
 </section>
@@ -796,14 +811,22 @@
     <h2 class="section-headline">THE CREDENTIAL STACK</h2>
   </div>
   <div class="creds-grid reveal reveal-1">
-    <div class="cred-card"><span class="cred-code">309A</span><span class="cred-name">Certificate of Qualification, Construction & Maintenance Electrician</span></div>
+    <div class="cred-card"><span class="cred-code">309A</span><span class="cred-name">ESA Master Electrician &amp; Certificate of Qualification — Construction & Maintenance Electrician</span></div>
     <div class="cred-card"><span class="cred-code">NCSO</span><span class="cred-name">National Construction Safety Officer</span></div>
     <div class="cred-card"><span class="cred-code">CSA Z462</span><span class="cred-name">Workplace Electrical Safety Standard</span></div>
     <div class="cred-card"><span class="cred-code">JHSC</span><span class="cred-name">Joint Health & Safety Committee, Parts 1 & 2</span></div>
     <div class="cred-card"><span class="cred-code">COR</span><span class="cred-name">Certificate of Recognition, Internal Auditor</span></div>
-    <div class="cred-card"><span class="cred-code">EV</span><span class="cred-name">Electric Vehicle Technician Certification</span></div>
+    <div class="cred-card"><span class="cred-code">EV</span><span class="cred-name">Electric Vehicle Technician Certification</span><span class="cred-dual">Certified + Instructor</span></div>
     <div class="cred-card"><span class="cred-code">IBEW</span><span class="cred-name">Health & Welfare Trustee, IBEW Local 120</span></div>
     <div class="cred-card"><span class="cred-code">SDF ×5</span><span class="cred-name">Five consecutive rounds of Skills Development Fund programming</span></div>
+    <div class="cred-card"><span class="cred-code">COURSE</span><span class="cred-name">Training course &amp; curriculum design — built and delivered</span></div>
+    <div class="cred-card"><span class="cred-code">APP DEV</span><span class="cred-name">Custom training apps &amp; web tools, self-built</span></div>
+    <div class="cred-card"><span class="cred-code">SJA</span><span class="cred-name">St. John Ambulance — First Aid & CPR</span><span class="cred-dual">Certified + Instructor</span></div>
+    <div class="cred-card"><span class="cred-code">WHSC</span><span class="cred-name">Workers Health & Safety Centre</span><span class="cred-dual">Certified + Instructor</span></div>
+    <div class="cred-card"><span class="cred-code">WAH</span><span class="cred-name">Working at Heights (CPO-approved)</span><span class="cred-dual">Certified + Instructor</span></div>
+    <div class="cred-card"><span class="cred-code">EWP</span><span class="cred-name">Elevating Work Platforms — scissor, boom & telehandler</span><span class="cred-dual">Certified + Instructor</span></div>
+    <div class="cred-card"><span class="cred-code">H&R</span><span class="cred-name">Hoisting & Rigging</span><span class="cred-dual">Certified + Instructor</span></div>
+    <div class="cred-card"><span class="cred-code">CSE</span><span class="cred-name">Confined Space Entry & Awareness</span><span class="cred-dual">Certified + Instructor</span></div>
   </div>
 </section>
 
@@ -844,7 +867,7 @@
     <div class="reveal reveal-1" style="padding-top:1rem;">
       <div class="contact-block"><p class="contact-block-label">Location</p><p>London, Ontario, Canada<br>Available for travel across Canada and the US.</p></div>
       <div class="contact-block"><p class="contact-block-label">What to Expect</p><p>A direct response within 48 hours. A short call to confirm fit, audience, and format. A talk built around your event context, not a generic deck pulled from a folder.</p></div>
-      <div class="contact-block"><p class="contact-block-label">Formats Available</p><p>45–60 min keynote<br>90-min keynote with workshop<br>Half-day leadership session<br>Panel anchor or facilitator<br>Ministry or government presentation</p></div>
+      <div class="contact-block"><p class="contact-block-label">Formats Available</p><p>30–60 min keynote<br>90-min keynote with workshop<br>Half-day leadership session<br>Panel anchor or facilitator<br>Ministry or government presentation</p></div>
       <div class="contact-block"><p class="contact-block-label">Speaking Inquiries</p><p><a href="mailto:hello@bradgard.ca">hello@bradgard.ca</a></p></div>
     </div>
   </section>
