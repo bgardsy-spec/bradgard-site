@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tradecraft — CuePilot &amp; Prompter Studio</title>
+<style>
+  :root{
+    --navy:#1b2b48; --navy-2:#223558; --ink:#161c26; --cream:#faf7f1;
+    --paper:#fffdf8; --muted:#6a7180; --line:#e6ddcd; --hair:#efe8da;
+    --gold:#c8922e; --gold-lt:#e3b24c; --green:#2a7d4f; --wash:#f3eee2;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font:13px/1.5 "Segoe UI","Segoe UI Variable",system-ui,sans-serif;
+    color:var(--ink); background:#d9dce2;
+    padding:18px; -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+  .display{font-family:"Bahnschrift","Segoe UI Semibold","Arial Narrow",sans-serif;
+    font-weight:600; letter-spacing:.2px;}
+
+  /* ---- sheet ---- */
+  .sheet{
+    position:relative; max-width:8.1in; margin:0 auto; background:var(--paper);
+    box-shadow:0 10px 40px rgba(20,28,40,.22); overflow:hidden;
+  }
+  /* subtle paper grain */
+  .sheet::before{
+    content:""; position:absolute; inset:0; pointer-events:none; z-index:6; opacity:.035;
+    background-image:radial-gradient(#000 .5px, transparent .6px);
+    background-size:3px 3px; mix-blend-mode:multiply;
+  }
+
+  /* ---- FULL-BLEED HERO (masthead + headline + live monitor) ---- */
+  .hero{
+    position:relative; color:#fff; padding:20px 30px 30px; overflow:hidden;
+    background:
+      radial-gradient(120% 90% at 88% -10%, #38507d 0%, rgba(56,80,125,0) 52%),
+      linear-gradient(170deg, var(--navy-2) 0%, var(--navy) 62%, #16233c 100%);
+  }
+  .hero::after{ /* gold hairline at the bleed edge */
+    content:""; position:absolute; left:0; right:0; bottom:0; height:3px;
+    background:linear-gradient(90deg, var(--gold) 0%, var(--gold-lt) 45%, transparent 100%);
+  }
+  .mast-row{display:flex; justify-content:space-between; align-items:center; gap:18px; position:relative; z-index:2}
+  .mark{display:flex; align-items:center; gap:14px}
+  .mark .chip{background:#fff; border-radius:12px; padding:7px 9px; line-height:0;
+    box-shadow:0 2px 8px rgba(0,0,0,.35)}
+  .mark img{width:46px; height:auto; display:block}
+  .mark .word{font-family:"Bahnschrift","Arial Narrow",sans-serif; font-weight:600;
+    font-size:18px; letter-spacing:5px; line-height:1}
+  .mark .k{font-size:9.5px; letter-spacing:3.5px; color:#b9c6df; margin-top:4px;
+    text-transform:uppercase}
+  .eyebrow{
+    font-size:9.5px; letter-spacing:2.6px; text-transform:uppercase; color:#0f1726;
+    background:linear-gradient(90deg,var(--gold-lt),var(--gold));
+    padding:5px 11px; border-radius:999px; font-weight:700; white-space:nowrap;
+  }
+  .hero-grid{display:grid; grid-template-columns:1.25fr .95fr; gap:22px; align-items:center;
+    margin-top:22px; position:relative; z-index:2}
+  .hero h1{
+    font-family:"Bahnschrift","Arial Narrow",sans-serif; font-weight:600;
+    font-size:40px; line-height:.98; letter-spacing:-.3px; margin:0; color:#fff;
+  }
+  .hero h1 em{font-style:normal; color:var(--gold-lt)}
+  .hero .lede{color:#c4cee0; font-size:13px; margin:12px 0 0}
+  .hero .lede b{color:#fff}
+  .hero .badges{display:flex; gap:8px; margin-top:14px; flex-wrap:wrap}
+  .hero .badges span{display:inline-flex; align-items:center; gap:7px; font-size:10.5px;
+    color:#dfe6f2; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.05);
+    padding:5px 11px; border-radius:999px; font-weight:600}
+  .hero .badges i{width:7px; height:7px; border-radius:50%; display:inline-block}
+
+  /* live-monitor glimpse (double-bezel glass) */
+  .monitor{background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14);
+    border-radius:16px; padding:7px; box-shadow:0 12px 30px rgba(0,0,0,.3)}
+  .monitor .scr{background:linear-gradient(180deg,#0f1930,#0b1426); border:1px solid rgba(255,255,255,.08);
+    border-radius:11px; padding:12px 13px; box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+  .monitor .hd{display:flex; justify-content:space-between; align-items:center;
+    font-size:9px; letter-spacing:1.6px; text-transform:uppercase; color:#8ea0c2; margin-bottom:9px}
+  .monitor .hd b{color:#fff; font-family:"Bahnschrift",sans-serif; letter-spacing:1px; font-size:11px}
+  .monitor .live{display:inline-flex; align-items:center; gap:5px; color:#5fd196}
+  .monitor .live i{width:6px; height:6px; border-radius:50%; background:#3fcf84;
+    box-shadow:0 0 0 3px rgba(63,207,132,.2)}
+  .monitor .line{height:7px; border-radius:4px; background:rgba(255,255,255,.12); margin:6px 0}
+  .monitor .line.w1{width:92%} .monitor .line.w2{width:74%}
+  .monitor .cue{height:7px; border-radius:4px; width:58%; margin:6px 0;
+    background:linear-gradient(90deg,var(--gold),var(--gold-lt))}
+  .monitor .pacebar{display:flex; align-items:center; gap:8px; margin-top:12px;
+    background:rgba(63,207,132,.14); border:1px solid rgba(63,207,132,.35);
+    border-radius:8px; padding:7px 9px}
+  .monitor .pacebar .tag{font-family:"Bahnschrift",sans-serif; font-size:11px; letter-spacing:1px; color:#7ff0b0}
+  .monitor .pacebar .num{margin-left:auto; font-family:ui-monospace,Consolas,monospace;
+    font-size:11px; color:#cfeede}
+  .monitor .meta{display:flex; justify-content:space-between; font-size:9px; color:#7a8aac; margin-top:9px}
+
+  /* ---- product pair ---- */
+  .pair{display:grid; grid-template-columns:1fr 1fr; gap:14px; padding:18px 30px 4px; position:relative; z-index:2}
+  /* double-bezel card */
+  .shell{background:var(--wash); border:1px solid var(--line); border-radius:16px; padding:6px}
+  .core{background:var(--paper); border:1px solid var(--hair); border-radius:11px;
+    padding:15px 16px 14px; height:100%; box-shadow:inset 0 1px 0 rgba(255,255,255,.7)}
+  .ptag{display:inline-flex; align-items:center; gap:7px; font-size:9.5px; letter-spacing:2px;
+    text-transform:uppercase; color:var(--muted); font-weight:700}
+  .ptag .dot{width:7px; height:7px; border-radius:50%}
+  .dot.studio{background:var(--gold)} .dot.pilot{background:var(--green)}
+  .pname{font-family:"Bahnschrift","Arial Narrow",sans-serif; font-weight:600;
+    font-size:23px; color:var(--navy); margin:7px 0 2px; letter-spacing:.2px}
+  .prole{font-size:11px; color:var(--muted); margin:0 0 9px}
+  .feat{list-style:none; margin:0; padding:0}
+  .feat li{display:flex; gap:9px; align-items:flex-start; margin:7px 0; font-size:12px; color:#2d3542}
+  .feat svg{flex:0 0 auto; margin-top:1px}
+  .feat b{color:var(--ink); font-weight:600}
+
+  /* ---- pipeline ---- */
+  .flow{margin:16px 30px 2px; background:var(--navy);
+    border-radius:14px; padding:14px 16px; color:#eef1f6; position:relative; z-index:2;
+    box-shadow:0 6px 18px rgba(27,43,72,.25)}
+  .flow h3{font-family:"Bahnschrift",sans-serif; font-weight:600; font-size:11px;
+    letter-spacing:2.4px; text-transform:uppercase; color:var(--gold-lt); margin:0 0 10px}
+  .steps{display:grid; grid-template-columns:1fr auto 1fr auto 1fr; align-items:center; gap:6px}
+  .step{display:flex; gap:10px; align-items:flex-start}
+  .step .n{font-family:"Bahnschrift",sans-serif; font-weight:600; font-size:15px;
+    width:24px; height:24px; flex:0 0 auto; border-radius:50%; color:#1b2b48;
+    background:linear-gradient(180deg,var(--gold-lt),var(--gold));
+    display:flex; align-items:center; justify-content:center}
+  .step .t{font-size:11.5px; line-height:1.35}
+  .step .t b{display:block; font-size:12.5px; margin-bottom:1px; color:#fff}
+  .step .t span{color:#b7c2d6}
+  .arrow{color:#5f759c; font-size:18px; text-align:center}
+
+  /* ---- why strip ---- */
+  .why{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; padding:16px 30px 6px; position:relative; z-index:2}
+  .why .cell{display:flex; gap:9px; align-items:flex-start}
+  .why .ic{flex:0 0 auto; width:28px; height:28px; border-radius:8px; background:var(--wash);
+    border:1px solid var(--line); display:flex; align-items:center; justify-content:center}
+  .why .cell b{display:block; font-size:11.5px; color:var(--ink); margin-bottom:1px}
+  .why .cell span{font-size:10.5px; color:var(--muted); line-height:1.35}
+
+  /* ---- cta footer ---- */
+  .cta{margin-top:14px; background:
+      linear-gradient(180deg,var(--navy-2),var(--navy));
+    color:#fff; padding:16px 30px; display:flex; justify-content:space-between;
+    align-items:center; gap:18px; position:relative}
+  .cta::before{content:""; position:absolute; left:0; right:0; top:0; height:3px;
+    background:linear-gradient(90deg,transparent, var(--gold) 55%, var(--gold-lt))}
+  .cta .big{font-family:"Bahnschrift",sans-serif; font-weight:600; font-size:20px; letter-spacing:.2px}
+  .cta .sm{font-size:11px; color:#aebbd2; margin-top:3px}
+  .pill{display:inline-flex; align-items:center; gap:10px; background:#fff; color:var(--navy);
+    padding:9px 10px 9px 16px; border-radius:999px; font-weight:700; font-size:12.5px; white-space:nowrap}
+  .pill .arw{width:26px; height:26px; border-radius:50%; background:var(--navy);
+    display:flex; align-items:center; justify-content:center}
+  .pill .arw svg{display:block}
+  .fineprint{font-size:9.5px; color:var(--muted); text-align:center; padding:8px 30px 12px;
+    letter-spacing:.3px}
+
+  @page{ size:Letter; margin:0 }
+  @media print{
+    body{background:#fff; padding:0}
+    .sheet{box-shadow:none; max-width:none}
+  }
+  @media (max-width:640px){
+    .pair{grid-template-columns:1fr}
+    .why{grid-template-columns:1fr 1fr}
+    .steps{grid-template-columns:1fr; gap:10px}
+    .arrow{display:none}
+    .hero .lede{max-width:100%}
+    .cta{flex-direction:column; align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <!-- FULL-BLEED HERO -->
+  <div class="hero">
+    <div class="mast-row">
+      <div class="mark">
+        <span class="chip"><img src="tradecraft-logo.png" alt="Tradecraft"></span>
+        <div>
+          <div class="word">TRADECRAFT</div>
+          <div class="k">Presentation Toolkit</div>
+        </div>
+      </div>
+      <div class="eyebrow">Studio&nbsp;+&nbsp;Stage · One Engine</div>
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1>Build the talk.<br><em>Then run it like it's on rails.</em></h1>
+        <p class="lede">Two tools, one engine. <b>Prompter Studio</b> turns your script and slides
+        into a timed, rehearsed project. <b>CuePilot</b> listens while you speak on stage —
+        scrolling the script, advancing the deck, watching your pace — so you keep your eyes on
+        the room, not the clock.</p>
+        <div class="badges">
+          <span><i style="background:#e3b24c"></i>Prompter Studio — author</span>
+          <span><i style="background:#3fcf84"></i>CuePilot — perform</span>
+        </div>
+      </div>
+
+      <!-- live-monitor glimpse -->
+      <div class="monitor" aria-hidden="true">
+        <div class="scr">
+          <div class="hd"><b>CuePilot</b><span class="live"><i></i>Listening</span></div>
+          <div class="line w1"></div>
+          <div class="cue"></div>
+          <div class="line w2"></div>
+          <div class="pacebar"><span class="tag">ON PACE</span><span class="num">+0:06 · slide 7/18</span></div>
+          <div class="meta"><span>Deck → projector</span><span>⚠ watch: slide 11</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT PAIR -->
+  <div class="pair">
+
+    <!-- Prompter Studio -->
+    <div class="shell">
+      <div class="core">
+        <span class="ptag"><span class="dot studio"></span>Author &amp; Rehearse</span>
+        <div class="pname">Prompter Studio</div>
+        <p class="prole">Where the talk gets built — no code, no command line.</p>
+        <ul class="feat">
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c8922e" stroke-width="1.6"><path d="M4 5h16M4 12h16M4 19h10"/></svg>
+            <span><b>Script to slides.</b> Drop in a Word or text script; it builds the timed deck for you.</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c8922e" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9l5 3-5 3z" fill="#c8922e" stroke="none"/></svg>
+            <span><b>Images &amp; video.</b> Place clips right on a slide — they play in the live deck.</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c8922e" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
+            <span><b>Pacing budgets.</b> Set a time target per slide; the run is planned before you rehearse.</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c8922e" stroke-width="1.6"><path d="M5 12l5 5L20 7"/></svg>
+            <span><b>One-click handoff.</b> Export a project that CuePilot imports as-is.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CuePilot -->
+    <div class="shell">
+      <div class="core">
+        <span class="ptag"><span class="dot pilot"></span>Perform Live</span>
+        <div class="pname">CuePilot</div>
+        <p class="prole">Autopilot for your talk — your confidence monitor on stage.</p>
+        <ul class="feat">
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2a7d4f" stroke-width="1.6"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0012 0M12 17v4"/></svg>
+            <span><b>It listens.</b> The script scrolls and the deck advances to where you actually are.</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2a7d4f" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            <span><b>Live pace HUD.</b> On pace, behind, or ahead — plus the “watch slides” that run long.</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2a7d4f" stroke-width="1.6"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>
+            <span><b>Phone &amp; clicker.</b> Scan a QR for a phone remote; any USB/BT clicker just works.</span></li>
+          <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2a7d4f" stroke-width="1.6"><path d="M4 17V7a2 2 0 012-2h9l5 5v7a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M8 21v-5h8v5"/></svg>
+            <span><b>Timing report.</b> Actual-vs-budget per slide after every run. Copy or export CSV.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PIPELINE -->
+  <div class="flow">
+    <h3>How a talk flows</h3>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><div class="t"><b>Build in Studio</b><span>Script, slides, video &amp; pacing.</span></div></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="n">2</div><div class="t"><b>Import to CuePilot</b><span>One file. Slides &amp; timing come across.</span></div></div>
+      <div class="arrow">→</div>
+      <div class="step"><div class="n">3</div><div class="t"><b>Take the stage</b><span>You watch CuePilot. The room sees the deck.</span></div></div>
+    </div>
+  </div>
+
+  <!-- WHY -->
+  <div class="why">
+    <div class="cell">
+      <div class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1b2b48" stroke-width="1.6"><path d="M12 3l7 4v5c0 4-3 7-7 9-4-2-7-5-7-9V7z"/></svg></div>
+      <div><b>The clicker always wins</b><span>A manual click is invisible to the room and always safe.</span></div>
+    </div>
+    <div class="cell">
+      <div class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1b2b48" stroke-width="1.6"><path d="M12 2v6m0 8v6M2 12h6m8 0h6"/><circle cx="12" cy="12" r="3"/></svg></div>
+      <div><b>Works offline</b><span>Local Whisper mode — flaky Wi-Fi can't stop the show.</span></div>
+    </div>
+    <div class="cell">
+      <div class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1b2b48" stroke-width="1.6"><path d="M4 7l8-4 8 4-8 4z"/><path d="M4 7v10l8 4 8-4V7"/></svg></div>
+      <div><b>Zero dependencies</b><span>Double-click to launch. First run sets itself up.</span></div>
+    </div>
+    <div class="cell">
+      <div class="ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1b2b48" stroke-width="1.6"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+      <div><b>Private by default</b><span>Nothing leaves the laptop. Your words stay yours.</span></div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <div>
+      <div class="big">Stop rehearsing against a stopwatch.</div>
+      <div class="sm">See CuePilot &amp; Prompter Studio run a real talk, end to end.</div>
+    </div>
+    <span class="pill">Ask for a live demo
+      <span class="arw"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#e3b24c" stroke-width="2.2"><path d="M5 12h12M13 6l6 6-6 6"/></svg></span>
+    </span>
+  </div>
+
+  <div class="fineprint">CuePilot &amp; Prompter Studio · by Tradecraft · bradgard.ca · bgardsy@gmail.com</div>
+
+</div>
+</body>
+</html>
