@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Path of Least Resistance - Keynote One-Sheet · Brad Gard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @page{ size:Letter; margin:0; }
+  :root{
+    --navy:#172230; --ink:#1a1f29; --muted:#6b7280;
+    --steel:#2f6f9f; --steel-lt:#4e93c4; --steel-dk:#245a82;
+    --copper:#c6884a; --copper-dk:#9a6322;
+    --line:#e3e2de; --hair:#eef1f4; --paper:#fdfdfb;
+    --f-impact:'Anton',sans-serif; --f-display:'Bebas Neue',sans-serif;
+    --f-body:'Libre Baskerville',serif; --f-mono:'DM Mono',monospace;
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{font:11px/1.42 var(--f-body); color:var(--ink); background:#e8eaed; padding:16px;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  .page{max-width:8in; margin:0 auto; background:var(--paper); padding:0.4in 0.5in;
+    box-shadow:0 4px 22px rgba(0,0,0,.14); position:relative; overflow:hidden;}
+  .page::before{content:''; position:absolute; top:0; left:0; right:0; height:5px;
+    background:linear-gradient(90deg,var(--navy),var(--steel) 60%,var(--copper));}
+
+  header{display:flex; justify-content:space-between; align-items:flex-start;
+    gap:14px; padding-bottom:9px; margin-bottom:10px; border-bottom:2px solid var(--navy);}
+  .brand{display:flex; align-items:center; gap:12px}
+  .photo{width:58px; height:58px; flex:0 0 auto; border-radius:50%; object-fit:cover;
+    object-position:top center; border:2px solid var(--steel); background:var(--hair);}
+  h1{font-family:var(--f-impact); font-size:23px; line-height:0.95; margin:0; letter-spacing:0.5px; color:var(--navy);}
+  .role{font-family:var(--f-mono); font-size:8.5px; letter-spacing:0.8px; text-transform:uppercase;
+    color:var(--steel); margin-top:5px; white-space:nowrap;}
+  .contact{text-align:right; font-family:var(--f-mono); font-size:8.5px; letter-spacing:0.5px;
+    line-height:1.8; color:var(--muted); text-transform:uppercase;}
+  .contact b{color:var(--ink)}
+
+  .khead{text-align:center; margin:4px 0 12px;}
+  .keyebrow{font-family:var(--f-mono); font-size:9px; letter-spacing:2.2px; text-transform:uppercase; color:var(--copper-dk);}
+  .ktitle{font-family:var(--f-impact); font-size:38px; line-height:0.9; color:var(--navy); letter-spacing:0.5px; margin:6px 0 7px;}
+  .khook{font-family:var(--f-display); font-size:18px; letter-spacing:0.6px; color:var(--muted); margin:0;}
+  .khook span{color:var(--steel)}
+
+  .grid{display:grid; grid-template-columns:1.55fr 1fr; gap:17px}
+  h2{font-family:var(--f-mono); font-size:9.5px; text-transform:uppercase; letter-spacing:1.2px;
+    margin:0 0 6px; color:var(--steel); padding-bottom:3px; border-bottom:1px solid var(--line);}
+  section{margin-bottom:11px}
+  p{margin:0 0 6px}
+
+  .take{list-style:none; margin:0; padding:0}
+  .take li{position:relative; padding:0 0 5px 14px; margin:0 0 4px; font-size:10px; line-height:1.4;
+    color:var(--ink); border-bottom:1px dotted var(--line);}
+  .take li:last-child{border-bottom:none}
+  .take li::before{content:''; position:absolute; left:0; top:5px; width:6px; height:6px;
+    background:var(--copper); border-radius:1px;}
+  .take b{color:var(--navy)}
+
+  .moment{margin:0; padding:8px 11px; background:var(--hair); border-left:3px solid var(--copper);
+    border-radius:5px; font-size:9.5px; line-height:1.5; color:var(--ink);}
+  .moment .ml{display:block; font-family:var(--f-mono); font-size:7.5px; letter-spacing:1.2px;
+    text-transform:uppercase; color:var(--copper-dk); margin-bottom:3px;}
+
+  .frame{display:grid; gap:5px}
+  .fitem{padding:6px 9px; background:var(--hair); border-radius:5px; border-left:3px solid var(--steel);}
+  .fitem b{display:block; font-family:var(--f-display); font-size:14px; letter-spacing:0.5px; color:var(--navy); line-height:1.15;}
+  .fitem span{font-size:9px; color:var(--muted); line-height:1.35;}
+  .fitem.hl{border-left-color:var(--copper)}
+
+  .who{font-size:10px; color:var(--muted); line-height:1.55}
+
+  .fmt{list-style:none; margin:0; padding:0}
+  .fmt li{display:flex; justify-content:space-between; align-items:baseline; gap:8px;
+    font-size:9.5px; color:var(--muted); padding:3px 0; border-bottom:1px dotted var(--line);}
+  .fmt li:last-child{border-bottom:none}
+  .fmt li b{color:var(--ink)}
+  .fmt li .dur{font-family:var(--f-mono); font-size:8.5px; letter-spacing:0.5px; color:var(--steel); white-space:nowrap;}
+
+  .spk{font-size:9px; color:var(--muted); line-height:1.5; text-align:center; margin:3px 0 0;
+    padding-top:9px; border-top:2px solid var(--navy);}
+  .spk b{color:var(--ink)}
+
+  footer{margin-top:10px; background:var(--navy); color:#fff; border-radius:7px;
+    display:flex; justify-content:space-between; align-items:center; padding:9px 15px; gap:12px;}
+  footer .bk{font-family:var(--f-display); font-size:16px; letter-spacing:1px}
+  footer .bk span{color:var(--copper)}
+  footer .links{font-family:var(--f-mono); font-size:9px; letter-spacing:0.5px; text-align:right; line-height:1.7}
+
+  @media print{ body{background:#fff; padding:0} .page{box-shadow:none; max-width:none; padding:0.38in 0.5in} }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="brand">
+      <img class="photo" src="profile/brad_onesheet_headshot.png" alt="Brad Gard">
+      <div>
+        <h1>BRAD GARD</h1>
+        <div class="role">Keynote Speaker · Master Electrician · Training Director, IBEW Local 120</div>
+      </div>
+    </div>
+    <div class="contact">
+      <b>bradgard.ca</b><br>
+      info@bradgard.ca<br>
+      youtube.com/@bradgard
+    </div>
+  </header>
+
+  <div class="khead">
+    <div class="keyebrow">Behavior-Change Keynote</div>
+    <div class="ktitle">Path of Least Resistance</div>
+    <p class="khook">Stop trying to change people - <span>change the path they are standing on.</span></p>
+  </div>
+
+  <div class="grid">
+
+    <div>
+      <section>
+        <h2>The Talk</h2>
+        <p>Why do smart, well-trained people skip the one step that would protect them? Brad spent a career on that question and landed somewhere uncomfortable: the problem is almost never the person. Using what forty years around electrical current taught him, he shows that people, like current, take the path of least resistance every time, and that no amount of training, posters, or pleading changes it.</p>
+        <p>The answer is not more motivation. It is design. Through stories from the oil sands to a Grade 8 classroom to a piece of software he built, he lays out a plain, repeatable framework for making the right thing the easy thing, so the behavior you want happens on its own, even when no one is watching.</p>
+      </section>
+
+      <section>
+        <h2>What the Room Walks Away With</h2>
+        <ul class="take">
+          <li><b>Information does not change behavior.</b> Why the better memo and the longer training rarely land.</li>
+          <li><b>Print, Current, Path.</b> A plain framework for why behavior does or does not happen.</li>
+          <li><b>Find the bright spot.</b> The place it already works, and how to copy the path.</li>
+          <li><b>Shape the path, not the person.</b> Make the right move the easy move.</li>
+          <li><b>Read the current.</b> Measure what people actually do, not what they were told.</li>
+        </ul>
+      </section>
+
+      <section>
+        <div class="moment">
+          <span class="ml">Where the whole talk started</span>
+          A sharp, certified, experienced hand skipped a ninety-second check he knew cold, and nearly lost everything for it. He was not lazy or careless. Understanding exactly why he skipped it is the key that unlocks the entire framework.
+        </div>
+      </section>
+    </div>
+
+    <div>
+      <section>
+        <h2>The Framework</h2>
+        <div class="frame">
+          <div class="fitem"><b>Print</b><span>The plan. Correct, important, and completely inert on its own.</span></div>
+          <div class="fitem"><b>Current</b><span>What people actually do. It always runs downhill, toward the easy path.</span></div>
+          <div class="fitem hl"><b>Path</b><span>The terrain you design. Change it, and the behavior follows for free.</span></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Ideal For</h2>
+        <p class="who">Safety and operations leaders · Continuous-improvement and quality teams · Construction and industrial employers · Leadership and change-management audiences · Anyone trying to make a behavior stick</p>
+      </section>
+
+      <section>
+        <h2>Formats</h2>
+        <ul class="fmt">
+          <li><b>Signature keynote</b><span class="dur">45-60 min</span></li>
+          <li><b>Conference slot</b><span class="dur">25-30 min</span></li>
+          <li><b>Keynote + working session</b><span class="dur">90+ min</span></li>
+        </ul>
+      </section>
+    </div>
+
+  </div>
+
+  <p class="spk"><b>Brad Gard</b> - Master Electrician &amp; Training Director, IBEW Local 120. Four decades turning field-tested ideas into systems that change behavior. Recent keynote: NETCO, Charlevoix.</p>
+
+  <footer>
+    <div class="bk">Book <span>this keynote</span></div>
+    <div class="links">bradgard.ca · info@bradgard.ca<br>See a talk: youtube.com/@bradgard</div>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brad Gard - Keynote Speaker · One-Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @page{ size:Letter; margin:0; }
+  :root{
+    /* Palette pulled from the headshot: steel-blue shirt, near-black backdrop, muted bronze warmth */
+    --navy:#172230; --ink:#1a1f29; --muted:#6b7280;
+    --steel:#2f6f9f; --steel-lt:#4e93c4; --steel-dk:#245a82;
+    --copper:#c6884a; --copper-dk:#9a6322;
+    --line:#e3e2de; --hair:#eef1f4; --paper:#fdfdfb;
+    --f-impact:'Anton',sans-serif; --f-display:'Bebas Neue',sans-serif;
+    --f-body:'Libre Baskerville',serif; --f-mono:'DM Mono',monospace;
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{font:11px/1.42 var(--f-body); color:var(--ink); background:#e8eaed; padding:16px;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  .page{max-width:8in; margin:0 auto; background:var(--paper); padding:0.4in 0.5in;
+    box-shadow:0 4px 22px rgba(0,0,0,.14); position:relative; overflow:hidden;}
+  .page::before{content:''; position:absolute; top:0; left:0; right:0; height:5px;
+    background:linear-gradient(90deg,var(--navy),var(--steel) 60%,var(--copper));}
+
+  header{display:flex; justify-content:space-between; align-items:flex-start;
+    gap:14px; padding-bottom:9px; margin-bottom:11px; border-bottom:2px solid var(--navy);}
+  .brand{display:flex; align-items:center; gap:12px}
+  .photo{width:62px; height:62px; flex:0 0 auto; border-radius:50%; object-fit:cover;
+    object-position:top center; border:2px solid var(--steel); background:var(--hair);}
+  h1{font-family:var(--f-impact); font-size:26px; line-height:0.95; margin:0; letter-spacing:0.5px; color:var(--navy);}
+  .role{font-family:var(--f-mono); font-size:8.5px; letter-spacing:0.8px; text-transform:uppercase;
+    color:var(--steel); margin-top:5px; white-space:nowrap;}
+  .contact{text-align:right; font-family:var(--f-mono); font-size:8.5px; letter-spacing:0.5px;
+    line-height:1.8; color:var(--muted); text-transform:uppercase;}
+  .contact b{color:var(--ink)}
+
+  .tagline{font-family:var(--f-display); font-size:19px; letter-spacing:1px; color:var(--navy);
+    text-align:center; margin:0 0 11px;}
+  .tagline span{color:var(--copper-dk)}
+
+  .grid{display:grid; grid-template-columns:1.55fr 1fr; gap:17px}
+  h2{font-family:var(--f-mono); font-size:9.5px; text-transform:uppercase; letter-spacing:1.2px;
+    margin:0 0 6px; color:var(--steel); padding-bottom:3px; border-bottom:1px solid var(--line);}
+  section{margin-bottom:11px}
+  p{margin:0 0 6px}
+
+  .kyn{margin:0; padding:0; list-style:none}
+  .kyn li{margin:0 0 5px; padding:0 0 5px; border-bottom:1px dotted var(--line)}
+  .kyn li:last-child{border-bottom:none}
+  .kyn .kt{font-family:var(--f-display); font-size:15px; letter-spacing:0.5px; color:var(--navy); display:block; line-height:1.1}
+  .kyn .flag{color:var(--copper-dk)}
+  .kyn .kh{font-size:10px; color:var(--muted); line-height:1.4}
+  .kyn .tag-flag{font-family:var(--f-mono); font-size:7.5px; letter-spacing:1px; text-transform:uppercase;
+    color:#fff; background:var(--steel); border-radius:3px; padding:1px 5px; margin-left:5px; vertical-align:middle;}
+  .kyn .tag-dev{background:var(--muted)}
+
+  .stats{display:grid; gap:5px}
+  .stat{display:flex; align-items:baseline; gap:8px; padding:5px 8px; background:var(--hair); border-radius:5px; border-left:3px solid var(--steel);}
+  .stat b{font-family:var(--f-impact); font-size:17px; color:var(--navy); line-height:1; min-width:42px;}
+  .stat span{font-size:9.5px; color:var(--muted); line-height:1.3}
+  .stat.hl{border-left-color:var(--copper)}
+
+  .quote{font-style:italic; font-size:10px; color:var(--ink); line-height:1.45; margin:0 0 7px; padding-left:9px; border-left:2px solid var(--copper);}
+  .quote cite{display:block; font-style:normal; font-family:var(--f-mono); font-size:8px; letter-spacing:0.5px; text-transform:uppercase; color:var(--muted); margin-top:3px;}
+
+  .who{font-size:10px; color:var(--muted); line-height:1.55}
+
+  .creds{margin-top:3px; padding-top:9px; border-top:2px solid var(--navy);}
+  .creds h2{border:none; margin-bottom:7px}
+  .chips{display:flex; flex-wrap:wrap; gap:5px}
+  .chip{font-family:var(--f-mono); font-size:8.5px; letter-spacing:0.3px; color:var(--ink);
+    background:var(--paper); border:1px solid var(--line); border-radius:4px; padding:3px 7px;}
+  .chip b{color:var(--steel)}
+
+  footer{margin-top:11px; background:var(--navy); color:#fff; border-radius:7px;
+    display:flex; justify-content:space-between; align-items:center; padding:9px 15px; gap:12px;}
+  footer .bk{font-family:var(--f-display); font-size:16px; letter-spacing:1px}
+  footer .bk span{color:var(--copper)}
+  footer .links{font-family:var(--f-mono); font-size:9px; letter-spacing:0.5px; text-align:right; line-height:1.7}
+
+  @media print{ body{background:#fff; padding:0} .page{box-shadow:none; max-width:none; padding:0.38in 0.5in} }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="brand">
+      <img class="photo" src="profile/brad_onesheet_headshot.png" alt="Brad Gard">
+      <div>
+        <h1>BRAD GARD</h1>
+        <div class="role">Keynote Speaker · Master Electrician · Training Director, IBEW Local 120</div>
+      </div>
+    </div>
+    <div class="contact">
+      <b>bradgard.ca</b><br>
+      info@bradgard.ca<br>
+      youtube.com/@bradgard
+    </div>
+  </header>
+
+  <p class="tagline">Leadership is not given. It is <span>earned.</span></p>
+
+  <div class="grid">
+
+    <div>
+      <section>
+        <h2>About</h2>
+        <p>Brad Gard has spent over four decades in the electrical trade, on the tools since he was fourteen. Apprentice, journeyman, foreman, business owner, safety leader, and now Training Director at IBEW Local 120.</p>
+        <p>He speaks to industry, labour, and education audiences about the three things he has spent a career living: building the next generation of skilled trades, mentorship that changes real outcomes, and a safety culture people believe in instead of just comply with. His talks work on stage because they happened in the field first.</p>
+      </section>
+
+      <section>
+        <h2>The Keynotes</h2>
+        <ul class="kyn">
+          <li>
+            <span class="kt"><span class="flag">Earned, Not Given</span><span class="tag-flag">Flagship</span></span>
+            <span class="kh">Thirty-eight apprentices. One hundred and five Grade 8 students. One day that proved leadership is revealed through real responsibility, not handed out with a title.</span>
+          </li>
+          <li>
+            <span class="kt">From Tools to Teaching</span>
+            <span class="kh">What happens when your best electricians become your worst teachers, and how to fix it before twenty years of knowledge walks out the door.</span>
+          </li>
+          <li>
+            <span class="kt">Zero Incidents Is a Culture</span>
+            <span class="kh">Safety paperwork saves no one. Real prevention happens in a conversation you were not in the room for. You build the culture, or you wait for the incident that proves you did not.</span>
+          </li>
+          <li>
+            <span class="kt">The Trades in Crisis</span>
+            <span class="kh">The skilled trades shortage is not a pipeline problem. It is a perception problem, and the sector has been solving the wrong one for twenty years.</span>
+          </li>
+          <li>
+            <span class="kt">The Arc Flash Story<span class="tag-flag">New</span></span>
+            <span class="kh">One live panel, one fireball, and the gear he almost skipped. A first-person account of the afternoon that proves current does not care about your plans.</span>
+          </li>
+        </ul>
+        <p style="font-size:9px;color:var(--muted);margin:0">Every talk runs as a keynote or a modular session, cut to your program length.</p>
+      </section>
+    </div>
+
+    <div>
+      <section>
+        <h2>The Proof · Feb 2026</h2>
+        <div class="stats">
+          <div class="stat"><b>38</b><span>Apprentices who led the day</span></div>
+          <div class="stat"><b>105</b><span>Grade 8 students mentored, one-to-one</span></div>
+          <div class="stat hl"><b>46%</b><span>Female participation, vs a 4% industry baseline. 11.5x the average.</span></div>
+          <div class="stat"><b>60%</b><span>Visible minority participation</span></div>
+          <div class="stat hl"><b>0</b><span>Safety incidents</span></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>What the Room Said</h2>
+        <p class="quote">My son has not stopped talking about it. He thoroughly enjoyed the apprentice he was paired with.<cite>Parent, Feb 2026 program</cite></p>
+        <p class="quote">Even though I realized the trades might not be for me, I still had so much fun.<cite>Ella, Grade 8 student</cite></p>
+      </section>
+
+      <section>
+        <h2>Who He Speaks To</h2>
+        <p class="who">Trade associations and unions · Apprenticeship and training conferences · Safety days and summits · Construction and industrial employers · Education and workforce-development audiences</p>
+        <p class="who" style="margin-top:6px;font-family:var(--f-mono);font-size:8.5px;letter-spacing:0.5px;text-transform:uppercase;color:var(--steel);">Recent keynote · NETCO, Charlevoix</p>
+      </section>
+    </div>
+
+  </div>
+
+  <div class="creds">
+    <h2>Credentials</h2>
+    <div class="chips">
+      <span class="chip"><b>309A</b> ESA Master Electrician</span>
+      <span class="chip"><b>NCSO</b> Construction Safety Officer</span>
+      <span class="chip"><b>CSA Z462</b> Electrical Safety</span>
+      <span class="chip"><b>JHSC</b> Parts 1 &amp; 2</span>
+      <span class="chip"><b>COR</b> Internal Auditor</span>
+      <span class="chip"><b>EV</b> Technician + Instructor</span>
+      <span class="chip"><b>NETCO</b> Leadership Excellence Award, 2026</span>
+      <span class="chip"><b>SDF ×5</b> Skills Development Fund rounds</span>
+      <span class="chip"><b>IBEW</b> Health &amp; Welfare Trustee</span>
+    </div>
+  </div>
+
+  <footer>
+    <div class="bk">Book a <span>keynote</span></div>
+    <div class="links">bradgard.ca · info@bradgard.ca<br>See a talk: youtube.com/@bradgard</div>
+  </footer>
+
+</div>
+</body>
+</html>

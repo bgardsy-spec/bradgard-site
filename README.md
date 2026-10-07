@@ -1,3 +1,3 @@
-# bradgard.ca
+# bradgard.ca (public site)
 
-Public hosting for the Brad Gard speaker site. Source of truth lives in the private bradgard.ca repo.
+Generated deploy copy of the public website. Do not edit here. Source of truth is the private repo `bgardsy-spec/bradgard.ca`; run `deploy-site.sh` there to update this repo.

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zero Incidents Is a Culture - Keynote One-Sheet · Brad Gard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @page{ size:Letter; margin:0; }
+  :root{
+    --navy:#172230; --ink:#1a1f29; --muted:#6b7280;
+    --steel:#2f6f9f; --steel-lt:#4e93c4; --steel-dk:#245a82;
+    --copper:#c6884a; --copper-dk:#9a6322;
+    --line:#e3e2de; --hair:#eef1f4; --paper:#fdfdfb;
+    --f-impact:'Anton',sans-serif; --f-display:'Bebas Neue',sans-serif;
+    --f-body:'Libre Baskerville',serif; --f-mono:'DM Mono',monospace;
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{font:11px/1.42 var(--f-body); color:var(--ink); background:#e8eaed; padding:16px;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  .page{max-width:8in; margin:0 auto; background:var(--paper); padding:0.4in 0.5in;
+    box-shadow:0 4px 22px rgba(0,0,0,.14); position:relative; overflow:hidden;}
+  .page::before{content:''; position:absolute; top:0; left:0; right:0; height:5px;
+    background:linear-gradient(90deg,var(--navy),var(--steel) 60%,var(--copper));}
+
+  header{display:flex; justify-content:space-between; align-items:flex-start;
+    gap:14px; padding-bottom:9px; margin-bottom:10px; border-bottom:2px solid var(--navy);}
+  .brand{display:flex; align-items:center; gap:12px}
+  .photo{width:58px; height:58px; flex:0 0 auto; border-radius:50%; object-fit:cover;
+    object-position:top center; border:2px solid var(--steel); background:var(--hair);}
+  h1{font-family:var(--f-impact); font-size:23px; line-height:0.95; margin:0; letter-spacing:0.5px; color:var(--navy);}
+  .role{font-family:var(--f-mono); font-size:8.5px; letter-spacing:0.8px; text-transform:uppercase;
+    color:var(--steel); margin-top:5px; white-space:nowrap;}
+  .contact{text-align:right; font-family:var(--f-mono); font-size:8.5px; letter-spacing:0.5px;
+    line-height:1.8; color:var(--muted); text-transform:uppercase;}
+  .contact b{color:var(--ink)}
+
+  .khead{text-align:center; margin:4px 0 12px;}
+  .keyebrow{font-family:var(--f-mono); font-size:9px; letter-spacing:2.2px; text-transform:uppercase; color:var(--copper-dk);}
+  .ktitle{font-family:var(--f-impact); font-size:38px; line-height:0.9; color:var(--navy); letter-spacing:0.5px; margin:6px 0 7px;}
+  .khook{font-family:var(--f-display); font-size:18px; letter-spacing:0.6px; color:var(--muted); margin:0;}
+  .khook span{color:var(--steel)}
+
+  .grid{display:grid; grid-template-columns:1.55fr 1fr; gap:17px}
+  h2{font-family:var(--f-mono); font-size:9.5px; text-transform:uppercase; letter-spacing:1.2px;
+    margin:0 0 6px; color:var(--steel); padding-bottom:3px; border-bottom:1px solid var(--line);}
+  section{margin-bottom:11px}
+  p{margin:0 0 6px}
+
+  .take{list-style:none; margin:0; padding:0}
+  .take li{position:relative; padding:0 0 5px 14px; margin:0 0 4px; font-size:10px; line-height:1.4;
+    color:var(--ink); border-bottom:1px dotted var(--line);}
+  .take li:last-child{border-bottom:none}
+  .take li::before{content:''; position:absolute; left:0; top:5px; width:6px; height:6px;
+    background:var(--copper); border-radius:1px;}
+  .take b{color:var(--navy)}
+
+  .moment{margin:0; padding:8px 11px; background:var(--hair); border-left:3px solid var(--copper);
+    border-radius:5px; font-size:9.5px; line-height:1.5; color:var(--ink);}
+  .moment .ml{display:block; font-family:var(--f-mono); font-size:7.5px; letter-spacing:1.2px;
+    text-transform:uppercase; color:var(--copper-dk); margin-bottom:3px;}
+
+  .frame{display:grid; gap:5px}
+  .fitem{padding:6px 9px; background:var(--hair); border-radius:5px; border-left:3px solid var(--steel);}
+  .fitem b{display:block; font-family:var(--f-display); font-size:14px; letter-spacing:0.5px; color:var(--navy); line-height:1.15;}
+  .fitem span{font-size:9px; color:var(--muted); line-height:1.35;}
+  .fitem.hl{border-left-color:var(--copper)}
+
+  .who{font-size:10px; color:var(--muted); line-height:1.55}
+
+  .fmt{list-style:none; margin:0; padding:0}
+  .fmt li{display:flex; justify-content:space-between; align-items:baseline; gap:8px;
+    font-size:9.5px; color:var(--muted); padding:3px 0; border-bottom:1px dotted var(--line);}
+  .fmt li:last-child{border-bottom:none}
+  .fmt li b{color:var(--ink)}
+  .fmt li .dur{font-family:var(--f-mono); font-size:8.5px; letter-spacing:0.5px; color:var(--steel); white-space:nowrap;}
+
+  .spk{font-size:9px; color:var(--muted); line-height:1.5; text-align:center; margin:3px 0 0;
+    padding-top:9px; border-top:2px solid var(--navy);}
+  .spk b{color:var(--ink)}
+
+  footer{margin-top:10px; background:var(--navy); color:#fff; border-radius:7px;
+    display:flex; justify-content:space-between; align-items:center; padding:9px 15px; gap:12px;}
+  footer .bk{font-family:var(--f-display); font-size:16px; letter-spacing:1px}
+  footer .bk span{color:var(--copper)}
+  footer .links{font-family:var(--f-mono); font-size:9px; letter-spacing:0.5px; text-align:right; line-height:1.7}
+
+  @media print{ body{background:#fff; padding:0} .page{box-shadow:none; max-width:none; padding:0.38in 0.5in} }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="brand">
+      <img class="photo" src="profile/brad_onesheet_headshot.png" alt="Brad Gard">
+      <div>
+        <h1>BRAD GARD</h1>
+        <div class="role">Keynote Speaker · Master Electrician · Training Director, IBEW Local 120</div>
+      </div>
+    </div>
+    <div class="contact">
+      <b>bradgard.ca</b><br>
+      info@bradgard.ca<br>
+      youtube.com/@bradgard
+    </div>
+  </header>
+
+  <div class="khead">
+    <div class="keyebrow">Safety Leadership Keynote</div>
+    <div class="ktitle">Zero Incidents Is a Culture</div>
+    <p class="khook">Zero is not a number you hit - <span>it is a culture you build.</span></p>
+  </div>
+
+  <div class="grid">
+
+    <div>
+      <section>
+        <h2>The Talk</h2>
+        <p>Every jobsite has a banner promising zero. Most of them are a wish. Brad draws the hard line between a safety program that looks good on paper and a culture that actually keeps people alive, and explains why chasing zero as a target can quietly make a site more dangerous, not less.</p>
+        <p>From a championship emergency-response team to running power at forty below in the oil sands, he shows what real safety culture feels like from the inside: honesty made easy, stop-work that is genuinely respected, and crews that watch out for each other when no one is checking. It is four decades of field experience turned into something a room can act on the next morning.</p>
+      </section>
+
+      <section>
+        <h2>What the Room Walks Away With</h2>
+        <ul class="take">
+          <li><b>Why "zero" as a target backfires,</b> and what to measure instead.</li>
+          <li><b>Compliance is the floor, not the house.</b> The difference between paperwork and protection.</li>
+          <li><b>The drift:</b> how good crews slide into danger one small shortcut at a time.</li>
+          <li><b>Make honesty the easy path,</b> so near-misses surface before they become incidents.</li>
+          <li><b>Stop-work only counts</b> when the youngest person on site feels safe to use it.</li>
+        </ul>
+      </section>
+
+      <section>
+        <div class="moment">
+          <span class="ml">The moment a culture is made</span>
+          A worker once told Brad, in front of the whole crew, about a near-miss nobody would ever have known about. What Brad did in the next thirty seconds decided whether that crew would ever tell him the truth again.
+        </div>
+      </section>
+    </div>
+
+    <div>
+      <section>
+        <h2>The Core Shift</h2>
+        <div class="frame">
+          <div class="fitem"><b>Build the Identity</b><span>Safe becomes who the crew is, not a rule they comply with.</span></div>
+          <div class="fitem"><b>Make Honesty Cheap</b><span>Reward the report. Never punish the person who tells the truth.</span></div>
+          <div class="fitem hl"><b>Measure Behavior</b><span>Track near-misses and stop-works, not just the injury count.</span></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Ideal For</h2>
+        <p class="who">Construction and industrial employers · Safety days and summits · Trade associations and unions · Site leadership and supervisors · Any high-hazard workforce</p>
+      </section>
+
+      <section>
+        <h2>Formats</h2>
+        <ul class="fmt">
+          <li><b>Signature keynote</b><span class="dur">45-60 min</span></li>
+          <li><b>Safety-day slot</b><span class="dur">25-30 min</span></li>
+          <li><b>Keynote + facilitated session</b><span class="dur">60-90 min</span></li>
+        </ul>
+      </section>
+    </div>
+
+  </div>
+
+  <p class="spk"><b>Brad Gard</b> - Master Electrician &amp; Training Director, IBEW Local 120. NCSO, CSA Z462, four decades in the field including temporary power in the oil sands. Recent keynote: NETCO, Charlevoix.</p>
+
+  <footer>
+    <div class="bk">Book <span>this keynote</span></div>
+    <div class="links">bradgard.ca · info@bradgard.ca<br>See a talk: youtube.com/@bradgard</div>
+  </footer>
+
+</div>
+</body>
+</html>

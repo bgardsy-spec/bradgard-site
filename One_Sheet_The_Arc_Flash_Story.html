@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Arc Flash Story - Keynote One-Sheet · Brad Gard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @page{ size:Letter; margin:0; }
+  :root{
+    --navy:#172230; --ink:#1a1f29; --muted:#6b7280;
+    --steel:#2f6f9f; --steel-lt:#4e93c4; --steel-dk:#245a82;
+    --copper:#c6884a; --copper-dk:#9a6322;
+    --line:#e3e2de; --hair:#eef1f4; --paper:#fdfdfb;
+    --f-impact:'Anton',sans-serif; --f-display:'Bebas Neue',sans-serif;
+    --f-body:'Libre Baskerville',serif; --f-mono:'DM Mono',monospace;
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{font:11px/1.42 var(--f-body); color:var(--ink); background:#e8eaed; padding:16px;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  .page{max-width:8in; margin:0 auto; background:var(--paper); padding:0.4in 0.5in;
+    box-shadow:0 4px 22px rgba(0,0,0,.14); position:relative; overflow:hidden;}
+  .page::before{content:''; position:absolute; top:0; left:0; right:0; height:5px;
+    background:linear-gradient(90deg,var(--navy),var(--steel) 60%,var(--copper));}
+
+  header{display:flex; justify-content:space-between; align-items:flex-start;
+    gap:14px; padding-bottom:9px; margin-bottom:10px; border-bottom:2px solid var(--navy);}
+  .brand{display:flex; align-items:center; gap:12px}
+  .photo{width:58px; height:58px; flex:0 0 auto; border-radius:50%; object-fit:cover;
+    object-position:top center; border:2px solid var(--steel); background:var(--hair);}
+  h1{font-family:var(--f-impact); font-size:23px; line-height:0.95; margin:0; letter-spacing:0.5px; color:var(--navy);}
+  .role{font-family:var(--f-mono); font-size:8.5px; letter-spacing:0.8px; text-transform:uppercase;
+    color:var(--steel); margin-top:5px; white-space:nowrap;}
+  .contact{text-align:right; font-family:var(--f-mono); font-size:8.5px; letter-spacing:0.5px;
+    line-height:1.8; color:var(--muted); text-transform:uppercase;}
+  .contact b{color:var(--ink)}
+
+  .khead{text-align:center; margin:4px 0 12px;}
+  .keyebrow{font-family:var(--f-mono); font-size:9px; letter-spacing:2.2px; text-transform:uppercase; color:var(--copper-dk);}
+  .ktitle{font-family:var(--f-impact); font-size:40px; line-height:0.9; color:var(--navy); letter-spacing:0.5px; margin:6px 0 7px;}
+  .khook{font-family:var(--f-display); font-size:18px; letter-spacing:0.6px; color:var(--muted); margin:0;}
+  .khook span{color:var(--steel)}
+
+  .grid{display:grid; grid-template-columns:1.55fr 1fr; gap:17px}
+  h2{font-family:var(--f-mono); font-size:9.5px; text-transform:uppercase; letter-spacing:1.2px;
+    margin:0 0 6px; color:var(--steel); padding-bottom:3px; border-bottom:1px solid var(--line);}
+  section{margin-bottom:11px}
+  p{margin:0 0 6px}
+
+  .take{list-style:none; margin:0; padding:0}
+  .take li{position:relative; padding:0 0 5px 14px; margin:0 0 4px; font-size:10px; line-height:1.4;
+    color:var(--ink); border-bottom:1px dotted var(--line);}
+  .take li:last-child{border-bottom:none}
+  .take li::before{content:''; position:absolute; left:0; top:5px; width:6px; height:6px;
+    background:var(--copper); border-radius:1px;}
+  .take b{color:var(--navy)}
+
+  .moment{margin:0; padding:8px 11px; background:var(--hair); border-left:3px solid var(--copper);
+    border-radius:5px; font-size:9.5px; line-height:1.5; color:var(--ink);}
+  .moment .ml{display:block; font-family:var(--f-mono); font-size:7.5px; letter-spacing:1.2px;
+    text-transform:uppercase; color:var(--copper-dk); margin-bottom:3px;}
+
+  .facts{display:block; background:var(--hair); border-radius:5px; padding:4px 11px; border-left:3px solid var(--steel);}
+  .facts .fr{display:flex; justify-content:space-between; gap:12px; padding:5px 0; border-bottom:1px dotted var(--line);}
+  .facts .fr:last-child{border-bottom:none}
+  .facts .fk{font-family:var(--f-mono); font-size:7.5px; letter-spacing:1px; text-transform:uppercase; color:var(--steel); white-space:nowrap; padding-top:2px;}
+  .facts .fv{text-align:right; font-size:9.5px; color:var(--ink); line-height:1.3}
+  .facts .fr.hl .fk{color:var(--copper-dk)}
+  .facts .fr.hl .fv{color:var(--navy)}
+
+  .who{font-size:10px; color:var(--muted); line-height:1.55}
+
+  .fmt{list-style:none; margin:0; padding:0}
+  .fmt li{display:flex; justify-content:space-between; align-items:baseline; gap:8px;
+    font-size:9.5px; color:var(--muted); padding:3px 0; border-bottom:1px dotted var(--line);}
+  .fmt li:last-child{border-bottom:none}
+  .fmt li b{color:var(--ink)}
+  .fmt li .dur{font-family:var(--f-mono); font-size:8.5px; letter-spacing:0.5px; color:var(--steel); white-space:nowrap;}
+
+  .spk{font-size:9px; color:var(--muted); line-height:1.5; text-align:center; margin:3px 0 0;
+    padding-top:9px; border-top:2px solid var(--navy);}
+  .spk b{color:var(--ink)}
+
+  footer{margin-top:10px; background:var(--navy); color:#fff; border-radius:7px;
+    display:flex; justify-content:space-between; align-items:center; padding:9px 15px; gap:12px;}
+  footer .bk{font-family:var(--f-display); font-size:16px; letter-spacing:1px}
+  footer .bk span{color:var(--copper)}
+  footer .links{font-family:var(--f-mono); font-size:9px; letter-spacing:0.5px; text-align:right; line-height:1.7}
+
+  @media print{ body{background:#fff; padding:0} .page{box-shadow:none; max-width:none; padding:0.38in 0.5in} }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="brand">
+      <img class="photo" src="profile/brad_onesheet_headshot.png" alt="Brad Gard">
+      <div>
+        <h1>BRAD GARD</h1>
+        <div class="role">Keynote Speaker · Master Electrician · Training Director, IBEW Local 120</div>
+      </div>
+    </div>
+    <div class="contact">
+      <b>bradgard.ca</b><br>
+      info@bradgard.ca<br>
+      youtube.com/@bradgard
+    </div>
+  </header>
+
+  <div class="khead">
+    <div class="keyebrow">Safety Keynote · A True Story</div>
+    <div class="ktitle">The Arc Flash Story</div>
+    <p class="khook">One live panel, one fireball, and the gear he almost skipped - <span>current does not care about your plans.</span></p>
+  </div>
+
+  <div class="grid">
+
+    <div>
+      <section>
+        <h2>The Talk</h2>
+        <p>On an ordinary afternoon in 2008, Brad was installing a breaker on a live 600-volt panel at a plant in London, Ontario. Getting his arc-flash gear meant a real hassle - signing out through security, walking to his truck, suiting up, and signing all the way back in - for a job that would take a few minutes. Every reason said skip it. He went and got it anyway.</p>
+        <p>Minutes later, that panel arced and threw a fireball straight at his face. This is the first-person account of what happened next, the response it brought, and why he is still here to tell it. It is the most visceral case a room will ever hear for wearing the gear, for doing the right thing when no one is watching, and for respecting the one thing on the job that does not respect you back.</p>
+      </section>
+
+      <section>
+        <h2>What the Room Walks Away With</h2>
+        <ul class="take">
+          <li><b>Current does not negotiate.</b> It does not care about your schedule, your plan, or how good a hand you are.</li>
+          <li><b>PPE is not paperwork.</b> The gear Brad almost skipped is the only reason this story has a good ending.</li>
+          <li><b>The decision that saves you</b> is made before the task starts, not during it.</li>
+          <li><b>Do it right when it is a hassle,</b> and when no one would ever know you cut the corner.</li>
+          <li><b>What an arc flash actually does,</b> from someone who stood in front of one and walked away.</li>
+        </ul>
+      </section>
+
+      <section>
+        <div class="moment">
+          <span class="ml">The decision that saved his face</span>
+          Everything said skip the gear. It meant signing out through security, driving to the truck, suiting up, and signing all the way back in, for a few minutes of work. Brad went and got it anyway. Minutes later, a fireball came off that live panel - right at where his face was.
+        </div>
+      </section>
+    </div>
+
+    <div>
+      <section>
+        <h2>The Incident</h2>
+        <div class="facts">
+          <div class="fr"><span class="fk">When</span><span class="fv">Sept 17, 2008 · 2:00 PM</span></div>
+          <div class="fr"><span class="fk">Where</span><span class="fv">General Dynamics, London, ON</span></div>
+          <div class="fr"><span class="fk">The Job</span><span class="fv">3-pole breaker, installed live</span></div>
+          <div class="fr"><span class="fk">The Panel</span><span class="fv">600 / 347 V</span></div>
+          <div class="fr"><span class="fk">The Response</span><span class="fv">London Fire, ESA, MOL, GD Security</span></div>
+          <div class="fr hl"><span class="fk">Outcome</span><span class="fv">Walked away. The PPE did its job.</span></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Ideal For</h2>
+        <p class="who">Safety days, stand-downs and summits · Construction and industrial employers · Electrical and high-voltage workforces · Trade associations and unions · Apprenticeship and training programs</p>
+      </section>
+
+      <section>
+        <h2>Formats</h2>
+        <ul class="fmt">
+          <li><b>Signature keynote</b><span class="dur">45-60 min</span></li>
+          <li><b>Safety stand-down</b><span class="dur">20-30 min</span></li>
+          <li><b>Keynote + facilitated debrief</b><span class="dur">60-90 min</span></li>
+        </ul>
+      </section>
+    </div>
+
+  </div>
+
+  <p class="spk"><b>Brad Gard</b> - Master Electrician &amp; Training Director, IBEW Local 120. NCSO, CSA Z462 electrical safety. Four decades in the field, and one afternoon he will never forget. Recent keynote: NETCO, Charlevoix.</p>
+
+  <footer>
+    <div class="bk">Book <span>this keynote</span></div>
+    <div class="links">bradgard.ca · info@bradgard.ca<br>See a talk: youtube.com/@bradgard</div>
+  </footer>
+
+</div>
+</body>
+</html>
