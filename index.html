@@ -418,6 +418,16 @@
   .e-stat-label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,240,232,0.78); }
   .earned-credit { position: absolute; bottom: 0.7rem; right: 1.1rem; z-index: 1; font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
 
+  /* ── TESTIMONIAL ── */
+  #testimonial { position: relative; z-index: 2; background: var(--dark); border-bottom: 1px solid var(--border); }
+  .testimonial-inner { max-width: 940px; margin: 0 auto; padding: 6rem 2.5rem; }
+  .testimonial-inner .section-label { display: block; }
+  .testimonial-quote { margin: 1.2rem 0 0; padding-left: 2rem; border-left: 3px solid var(--gold); }
+  .testimonial-quote p { font-family: var(--font-body); font-style: italic; font-size: clamp(1.05rem, 1.9vw, 1.4rem); line-height: 1.75; color: var(--warm); }
+  .testimonial-cite { display: block; margin-top: 1.8rem; font-style: normal; }
+  .testimonial-cite .t-name { display: block; font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.04em; color: var(--warm); line-height: 1.1; }
+  .testimonial-cite .t-role { display: block; margin-top: 0.35rem; font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
+
   /* ── AWARD FEATURE ── */
   #award { position: relative; z-index: 2; background: var(--dark2); overflow: hidden; }
   #award::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 15% 50%, rgba(255,184,22,0.09), transparent 60%); }
@@ -511,6 +521,8 @@
     .about-photo { max-width: 100%; }
     .about-stat-grid { grid-template-columns: repeat(2, 1fr); }
     .award-inner { text-align: center; justify-items: center; }
+    .testimonial-inner { padding: 4.5rem 1.5rem; }
+    .testimonial-quote { padding-left: 1.25rem; }
     .award-seal { margin: 0 auto; }
     #earned { padding: 4.5rem 1.5rem 3.5rem; min-height: auto; background-attachment: scroll; }
     .earned-stat { gap: 1.8rem; }
@@ -797,6 +809,20 @@
   <span class="earned-credit">IBEW Local 120 Training Centre · Feb 2026</span>
 </section>
 
+<!-- TESTIMONIAL -->
+<section id="testimonial">
+  <div class="testimonial-inner">
+    <span class="section-label reveal">What Organizers Say</span>
+    <blockquote class="testimonial-quote reveal reveal-1">
+      <p>&ldquo;Brad Gard delivered &lsquo;Earned, Not Given&rsquo; for NETCO, and it was a passionate, powerful speech. He speaks from over four decades in the electrical trade, and his message on leadership, mentorship, and recruitment is practical and honest. I would recommend Brad to any organization looking for a speaker who knows the trades from the inside.&rdquo;</p>
+      <div class="testimonial-cite">
+        <span class="t-name">Chris Swick</span>
+        <span class="t-role">Executive Director, NETCO</span>
+      </div>
+    </blockquote>
+  </div>
+</section>
+
 <!-- AWARD FEATURE -->
 <section id="award">
   <div class="award-inner">
@@ -1023,6 +1049,10 @@
         `Event date: ${data.get('Event Date') || ''}\n\n` +
         `${data.get('Message') || ''}`;
       window.location.href = `mailto:${FALLBACK_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      // Honest UX: we only opened a draft in the visitor's email client; nothing
+      // has actually been sent, so don't claim the inquiry was delivered.
+      document.getElementById('form-confirm').textContent =
+        `Opening your email app to send your inquiry to ${FALLBACK_EMAIL}. If nothing opened, email that address directly.`;
       showFormMsg(true);
     }
   }
