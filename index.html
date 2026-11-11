@@ -310,7 +310,7 @@
 
   /* ── KEYNOTES ── */
   .keynotes-header { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: end; margin-bottom: 3.5rem; }
-  .keynote-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: var(--border); border-radius: 8px; overflow: hidden; }
+  .keynote-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border-radius: 8px; overflow: hidden; }
   .keynote-card {
     background: var(--dark2); display: flex; flex-direction: column;
     cursor: pointer; position: relative; overflow: hidden; transition: background 0.25s, transform 0.2s;
@@ -325,6 +325,7 @@
   .keynote-card.k2::before { background: var(--gold); }
   .keynote-card.k3::before { background: #e05a2b; }
   .keynote-card.k4::before { background: #3aa0ff; }
+  .keynote-card.k6::before { background: #2fc4b2; }
   .keynote-card.kflag::before { background: var(--gold); }
   .k-badge.flag { color: #1a1200; background: var(--gold); border-color: var(--gold); }
   .k-num { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
@@ -337,11 +338,13 @@
   .tag.gold  { border-color: var(--gold-dk); color: var(--gold); }
   .tag.rust  { border-color: #8b3a20; color: #e07050; }
   .tag.blue  { border-color: #2a6da8; color: #6bb6ff; }
+  .tag.teal  { border-color: #1f8f86; color: #4fd6c8; }
 
   .k-drawer { background: var(--dark3); border: 1px solid var(--border); border-top: 2px solid var(--green); padding: 2.5rem; margin-top: 1px; display: none; animation: slideDown 0.25s ease; border-radius: 0 0 8px 8px; }
   .k-drawer.k2-border { border-top-color: var(--gold); }
   .k-drawer.k3-border { border-top-color: #e05a2b; }
   .k-drawer.k4-border { border-top-color: #3aa0ff; }
+  .k-drawer.k6-border { border-top-color: #2fc4b2; }
   .k-drawer.kflag-border { border-top-color: var(--gold); }
   .k-drawer.open { display: block; }
   @keyframes slideDown { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
@@ -645,7 +648,7 @@
     <div>
       <span class="section-label">Speaking</span>
       <span class="gold-rule"></span>
-      <h2 class="section-headline">FIVE KEYNOTES.<br>ONE INDUSTRY.</h2>
+      <h2 class="section-headline">SIX KEYNOTES.<br>ONE INDUSTRY.</h2>
     </div>
     <p class="section-intro">
       These are not motivational talks. They are practitioner arguments, built from four decades of field experience, a training director's lens, and direct accountability for what happens when apprentices enter the trades unprepared, or never enter at all.
@@ -696,6 +699,15 @@
         <h3 class="k-title">The Arc Flash Story</h3>
         <p class="k-hook">One live panel, one fireball, and the gear he almost skipped. A first-person account of the afternoon that proves current does not care about your plans.</p>
         <div class="k-meta"><span class="tag blue">45-60 min</span><span class="tag">Safety · True Story</span><span class="k-open" style="margin-left:auto">Details +</span></div>
+      </div>
+    </div>
+    <div class="keynote-card k6" onclick="toggleDrawer('d6')">
+      <div class="k-img" style="background-image:url('profile/keynote-firstonscene.jpg')"><span class="k-badge">New</span></div>
+      <div class="k-body">
+        <span class="k-num">Keynote 06</span>
+        <h3 class="k-title">First on the Scene</h3>
+        <p class="k-hook">A keynote for the people who train the public to act. Every bystander save stands on an instructor who was never in the room, and will never get the call.</p>
+        <div class="k-meta"><span class="tag teal">25-40 min</span><span class="tag">First Aid Instructors</span><span class="k-open" style="margin-left:auto">Details +</span></div>
       </div>
     </div>
   </div>
@@ -753,6 +765,17 @@
         <h4 style="margin-top:1.5rem;">The line that anchors it</h4><p style="font-style:italic; color:#6bb6ff;">"Current does not care about your schedule, your plan, or how good a hand you are."</p></div>
     </div>
     <button class="k-drawer-close" onclick="closeDrawer('d4')">Close ↑</button>
+  </div>
+
+  <div class="k-drawer k6-border" id="d6">
+    <div class="k-drawer-inner">
+      <div><h4>What this talk covers</h4>
+        <ul><li>Why the bystander, not the ambulance, decides who lives</li><li>The freeze is about permission, not knowledge - and permission can be taught on purpose</li><li>A reframe for the "I'm only here for the card" student, and why that one matters most</li><li>Under pressure nobody rises to the occasion; they fall to their training - Brad's own first real call</li><li>A reason to keep teaching well on the days the work feels routine, with no scoreboard and no call back</li></ul>
+      </div>
+      <div><h4>Audience</h4><p>First aid and CPR instructors, instructor-trainers, training organizations and their conferences, workplace safety trainers, and anyone who prepares ordinary people to act on the worst day of someone else's life.</p>
+        <h4 style="margin-top:1.5rem;">The line that anchors it</h4><p style="font-style:italic; color:#4fd6c8;">"You don't just teach first aid. You manufacture the first responder."</p></div>
+    </div>
+    <button class="k-drawer-close" onclick="closeDrawer('d6')">Close ↑</button>
   </div>
 </section>
 
@@ -894,6 +917,7 @@
             <option>Keynote 01 - From Tools to Teaching</option>
             <option>Keynote 02 - Zero Incidents Is a Culture</option>
             <option>Keynote 03 - The Trades in Crisis</option>
+            <option>First on the Scene</option>
             <option>Not sure yet - let's discuss</option>
           </select>
         </div>
